@@ -1,0 +1,27 @@
+CREATE TABLE CONSUMER_COMPLAINT_DATABASE1(Date_Received string,Product string,Sub_Product string,
+Issue String,Sub_issue string,Consumer_complaint_narrative string,Company_public_response string,
+Company string,State string,Zip_code int,Submitted_via string,Date_sent_to_company string,
+Company_response_to_consumer string,Timely_response string,Consumer_disputed string,Complaint_ID string
+)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+TBLPROPERTIES("skip.header.line.count=1");
+
+LOAD DATA INPATH '\HdiSamples\Consumer_Complaints.txt' OVERWRITE INTO TABLE CONSUMER_COMPLAINT_DATABASE;
+
+select product,count(product) AS INC_OCCURE from CONSUMER_COMPLAINT_DATABASE1 GROUP BY product ORDER BY INC_OCCURE desc;..Number of complaints for product
+
+select sub_product,count(sub_product) AS INC_OCCURE from CONSUMER_COMPLAINT_DATABASE1 GROUP BY sub_product ORDER BY INC_OCCURE desc;...Number of complaints for sub_product
+
+select state,count(state) AS INC_OCCURE from CONSUMER_COMPLAINT_DATABASE1 GROUP BY state ORDER BY INC_OCCURE desc;...Number of complaints according to state
+
+select zip_code,count(zip_code) AS INC_OCCURE from CONSUMER_COMPLAINT_DATABASE1 GROUP BY zip_code ORDER BY INC_OCCURE desc;..Number of complaints according to zip_code
+
+select company,count(company) AS INC_OCCURE from CONSUMER_COMPLAINT_DATABASE1 GROUP BY company ORDER BY INC_OCCURE desc;..Number of complaints for comapny
+
+select complaint_submitted_via,count(complaint_submitted_via) AS INC_OCCURE from CONSUMER_COMPLAINT_DATABASE1 GROUP BY complaint_submitted_via ORDER BY INC_OCCURE desc;..Complaints submitted via
+
+company response to consumer and timely response
+
+SELECT YEAR,COUNT(YEAR) from DB3 GROUP BY YEAR;..Mortgage complaints according to year
+
+
